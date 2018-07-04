@@ -58,12 +58,15 @@ public class PostFragment extends Fragment {
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_post, container, false);
 
-        Toolbar mToolbar = (Toolbar) getView().findViewById(R.id.toolbar);
+        View v = inflater.inflate(R.layout.fragment_post, container, false);
+
+
+        Toolbar mToolbar = (Toolbar) v.findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         layoutManager = new LinearLayoutManager(getApplicationContext());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        recyclerView = (RecyclerView) v.findViewById(R.id.recycler);
 
         final SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_layout);
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
