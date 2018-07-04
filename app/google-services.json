@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "102555763910",
+    "firebase_url": "https://olympiadfianl.firebaseio.com",
+    "project_id": "olympiadfianl",
+    "storage_bucket": "olympiadfianl.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:102555763910:android:c3d18550c07c1719",
+        "android_client_info": {
+          "package_name": "com.blanksoft.olympiadfinal1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "102555763910-d3soq0ro3feonpu110fv4gk955s1uu2m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl4X2UbpDUDQuTV5iwcloaEyb4t2Lp18E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
