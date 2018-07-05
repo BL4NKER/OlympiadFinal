@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
         final Button registerButton = (Button)findViewById(R.id.signUp);
 
 
-        alreadyhaveButton.setOnClickListener(new View.OnClickListener() {
+          alreadyhaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                 startActivity(intent);

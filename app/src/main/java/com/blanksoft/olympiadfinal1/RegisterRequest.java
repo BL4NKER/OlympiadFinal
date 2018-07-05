@@ -6,7 +6,7 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RegisterRequest extends StringRequest {
+  public class RegisterRequest extends StringRequest {
     final static private String URL = "http://172.20.10.3:3000/process/adduser";
     private Map<String, String> parameters;
 
