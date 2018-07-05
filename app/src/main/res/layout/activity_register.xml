@@ -28,7 +28,7 @@
             android:background="#A6FFFFFF"></View>
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/IDtv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
@@ -44,7 +44,7 @@
             android:textColorHint="#BFFFFFFF" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/Nametv"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="50dp"
@@ -59,7 +59,7 @@
             android:textColorHint="#BFFFFFFF" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/Emailtv"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="50dp"
@@ -74,7 +74,7 @@
             android:textColorHint="#BFFFFFFF" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/Passwordtv"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="50dp"
@@ -84,12 +84,13 @@
             android:drawablePadding="5dp"
             android:drawableStart="@drawable/ic_outline_lock_24px"
             android:hint="Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
+
             android:textColor="@android:color/white"
             android:textColorHint="#BFFFFFFF" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/CFtv"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginLeft="50dp"
@@ -99,7 +100,7 @@
             android:drawablePadding="5dp"
             android:drawableStart="@drawable/ic_outline_lock_24px"
             android:hint="Confirm Password"
-            android:inputType="textPersonName"
+            android:inputType="textPassword"
             android:textColor="@android:color/white"
             android:textColorHint="#BFFFFFFF" />
 
@@ -116,6 +117,7 @@
             android:textColor="#E57373" />
 
         <Button
+            android:id="@+id/AHAA"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
