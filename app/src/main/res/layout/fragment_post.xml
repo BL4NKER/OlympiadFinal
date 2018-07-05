@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".PostFragment">
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"></include>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
