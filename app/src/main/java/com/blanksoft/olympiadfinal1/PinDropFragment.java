@@ -94,7 +94,7 @@ public class PinDropFragment extends Fragment
     private static final int UPDATE_INTERVAL_MS = 15000;
     private static final int FASTEST_UPDATE_INTERVAL_MS = 15000;
 
-    private GoogleMap googleMap = null;
+    private  GoogleMap googleMap = null;
     PlaceAutocompleteFragment autocompleteFragment;
     private MapView mapView = null;
     private GoogleApiClient googleApiClient = null;
@@ -343,7 +343,7 @@ public class PinDropFragment extends Fragment
 
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
         // OnMapReadyCallback implements 해야 mapView.getMapAsync(this); 사용가능. this 가 OnMapReadyCallback
 
         this.googleMap = googleMap;
