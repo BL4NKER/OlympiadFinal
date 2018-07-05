@@ -27,8 +27,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -55,13 +63,30 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.sql.DriverManager.println;
+
 
 public class PinDropFragment extends Fragment
         implements OnMapReadyCallback ,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
-        LocationListener
+        LocationListener,
+        GoogleMap.OnMarkerClickListener
 {
+
+    Content content2;
+
+    private String name;
+    private String content;
+
+    MarkerOptions marker;
+
     private static final LatLng DEFAULT_LOCATION = new LatLng(37.56, 126.97);
     private static final String TAG = "googlemap_example";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
@@ -332,10 +357,85 @@ public class PinDropFragment extends Fragment
         // 매끄럽게 이동함
         googleMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
+        final String URL =  "http://172.20.10.4:3000/content";
+
+        final JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST,
+                URL,
+                null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+//                            JSONArray jsonarray = new JSONArray(response);
+
+                            println("onResponse() 호출됨 : " + response);
+                            for(int i =0; i<response.length(); i++){
+
+                                JSONObject jresponse = response.getJSONObject(i);
+
+                                double lat, lng;
+
+                                content2 =new Content(jresponse.optDouble("makerlat"),jresponse.optDouble("makerlong"));
+
+                                Log.d("qwt", content2.toString());
+
+                                marker = new MarkerOptions().position(
+                                        new LatLng(content2.getLat(), content2.getLng())).title("ㅇㅂ");
+
+                                // String log = String.valueOf(lat);
+
+                                //rgbg nLog.d("제발나와래이", log);
+
+                                googleMap.addMarker(marker);
+                            }
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
 
 
 
+                return params;
+            }
+        };
 
+        request.setShouldCache(true);
+        request.setRetryPolicy(new RetryPolicy() {
+            @Override
+            public int getCurrentTimeout() {
+                return 50000;
+            }
+
+            @Override
+            public int getCurrentRetryCount() {
+                return 50000;
+            }
+
+            @Override
+            public void retry(VolleyError error) throws VolleyError {
+
+            }
+        });
+        request.setRetryPolicy(new com.android.volley.DefaultRetryPolicy(
+
+                200000 ,
+
+                com.android.volley.DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+
+                com.android.volley.DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+        Volley.newRequestQueue(getActivity()).add(request);
     }
 
     private void setMyLocation(){
@@ -386,6 +486,88 @@ public class PinDropFragment extends Fragment
         //}
         googleApiClient.connect();
 
+    }
+
+    @Override
+    public boolean onMarkerClick(final Marker marker) {
+
+        final String m1 = String.valueOf(marker.getPosition().latitude);
+        final String m2 = String.valueOf(marker.getPosition().longitude);
+
+        String url =  "http://172.20.10.4:3000/findByGps";
+
+        StringRequest request = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+
+                            JSONArray jaresponse = new JSONArray(response);
+                            JSONObject jresponse = jaresponse.getJSONObject(0);
+                            name = jresponse.optString("name", "노운지");
+                            content = jresponse.optString("content", "김대중");
+
+                            LayoutInflater inflater = getLayoutInflater();
+                            View alertLayout = inflater.inflate(R.layout.item_dialog_gps, null);
+                            TextView tvName = alertLayout.findViewById(R.id.tvName);
+                            TextView tvContent = alertLayout.findViewById(R.id.tvContent);
+                            tvName.setText(name);
+                            tvContent.setText(content);
+
+                            android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(getContext());
+                            builder.setTitle("dd")
+                                    .setView(alertLayout)
+                                    //builder.setMessage("Look at this dialog!")
+                                    .setCancelable(false)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            Intent intent = new Intent(getContext(), CompleteWriteActivity.class);
+                                            intent.putExtra("registUser", name);
+                                            startActivity(intent);
+                                        }
+                                    });
+                            android.support.v7.app.AlertDialog alert = builder.create();
+                            alert.show();
+
+                            Log.d(name + " " + content, "onResponse: ");
+
+                            //Log.d("ggw",jresponse.getString("content"));
+                            println("onResponse() 호출됨 : " + response);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String>  params = new HashMap<>();
+
+                //Log.d(m, "getParams: ");
+
+                //for (int i = 0 ; i<markerlat.length ; i++) {
+                //if (markerlat[i].equals(m1)) {
+                params.put("lat", m1);
+                params.put("long", m2);
+                //}
+                //}
+
+                return params;
+            }
+        };
+
+        request.setShouldCache(true);
+        Volley.newRequestQueue(getActivity()).add(request);
+
+        println("웹서버에 요청함 : " + url);
+
+        return true;
     }
 
     public boolean checkLocationServicesStatus() {
