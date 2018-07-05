@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.register:
-                Intent i = new Intent(getApplicationContext(),RegisterActivity.class);
+                Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
                 startActivity(i);
                 break;
             case R.id.loginbtn:
@@ -86,6 +86,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 save();
 
                 login();
+                break;
+            case R.id.btResetPw:
+                i = new Intent(getApplicationContext(), ResetPwActivity.class);
+                startActivity(i);
                 break;
 
         }
