@@ -7,12 +7,9 @@
     android:orientation="vertical"
     tools:context=".QuestGpsActivity">
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onButton2Clicked"
-        android:text="Button" />
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"></include>
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"

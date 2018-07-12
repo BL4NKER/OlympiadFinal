@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,20 +48,26 @@
             android:textColor="@android:color/white"
             android:text="귀하의 이메일로 비밀번호 초기화 메일을 보냅니다" />
 
-        <EditText
-            android:id="@+id/etResetPw"
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/Emailti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:backgroundTint="#A6FFFFFF"
-            android:drawablePadding="5dp"
-            android:drawableStart="@drawable/ic_outline_person_24px"
-            android:ems="10"
-            android:hint="Email"
-            android:inputType="textPersonName"
             android:textColor="@android:color/white"
-            android:textColorHint="#BFFFFFFF" />
+            android:textColorHint="#BFFFFFFF"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/Emailtv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#A6FFFFFF"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_outline_email_24px"
+                android:hint="E-mail"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorClearWhite" />
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/btResetPw"
@@ -73,17 +79,18 @@
             android:background="@drawable/login_button"
             android:text="Reset Password"
             android:textAllCaps="false"
-            android:textColor="#E57373" />
+            android:textColor="@color/colorPrimary" />
 
         <Button
+            android:id="@+id/btBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:layout_marginTop="10dp"
-            android:textAllCaps="false"
             android:background="@drawable/register_button"
             android:text="Back"
+            android:textAllCaps="false"
             android:textColor="#FFFFFF" />
 
         <View

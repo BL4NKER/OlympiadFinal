@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,83 +26,114 @@
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             android:background="#A6FFFFFF"></View>
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/IDti"
+            android:textColor="@android:color/white"
+            android:textColorHint="#BFFFFFFF"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            app:hintTextAppearance="@style/TextAppearance.App.TextInputLayout" >
 
-        <EditText
-            android:id="@+id/IDtv"
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/IDtv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="#A6FFFFFF"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_outline_person_24px"
+                android:ems="10"
+                android:hint="ID"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorClearWhite"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/Nameti"
+            android:textColor="@android:color/white"
+            android:textColorHint="#BFFFFFFF"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/Nametv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#A6FFFFFF"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_outline_face_24px"
+                android:hint="NickName"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorClearWhite" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/Emailti"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="5dp"
-            android:backgroundTint="#A6FFFFFF"
-            android:drawablePadding="5dp"
-            android:drawableStart="@drawable/ic_outline_person_24px"
-            android:ems="10"
-            android:hint="ID"
-            android:inputType="textPersonName"
             android:textColor="@android:color/white"
-            android:textColorHint="#BFFFFFFF" />
+            android:textColorHint="#BFFFFFFF"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/Emailtv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#A6FFFFFF"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_outline_email_24px"
+                android:hint="E-mail"
+                android:inputType="textPersonName"
+                android:textColor="@color/colorClearWhite" />
+        </android.support.design.widget.TextInputLayout>
 
-        <EditText
-            android:id="@+id/Nametv"
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#A6FFFFFF"
-            android:drawablePadding="5dp"
-            android:drawableStart="@drawable/ic_outline_lock_24px"
-            android:hint="Name"
-            android:inputType="textPersonName"
+            android:layout_height="wrap_content" android:id="@+id/Passwordti"
             android:textColor="@android:color/white"
-            android:textColorHint="#BFFFFFFF" />
+            android:textColorHint="#BFFFFFFF"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp">
 
-        <EditText
-            android:id="@+id/Emailtv"
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/Passwordtv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#A6FFFFFF"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_outline_lock_24px"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:textColor="@color/colorClearWhite"/>
+        </android.support.design.widget.TextInputLayout>
+
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#A6FFFFFF"
-            android:drawablePadding="5dp"
-            android:drawableStart="@drawable/ic_outline_lock_24px"
-            android:hint="E-mail"
-            android:inputType="textPersonName"
+            android:layout_height="wrap_content" android:id="@+id/CFti"
             android:textColor="@android:color/white"
-            android:textColorHint="#BFFFFFFF" />
-
-        <EditText
-            android:id="@+id/Passwordtv"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:textColorHint="#BFFFFFFF"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#A6FFFFFF"
-            android:drawablePadding="5dp"
-            android:drawableStart="@drawable/ic_outline_lock_24px"
-            android:hint="Password"
-            android:inputType="textPassword"
-
-            android:textColor="@android:color/white"
-            android:textColorHint="#BFFFFFFF" />
-
-        <EditText
-            android:id="@+id/CFtv"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="10dp"
-            android:backgroundTint="#A6FFFFFF"
-              android:drawablePadding="5dp"
-            android:drawableStart="@drawable/ic_outline_lock_24px"
-            android:hint="Confirm Password"
-            android:inputType="textPassword"
-            android:textColor="@android:color/white"
-            android:textColorHint="#BFFFFFFF" />
+            android:layout_marginRight="50dp">
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/CFtv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:backgroundTint="#A6FFFFFF"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_outline_lock_24px"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                android:textColor="@color/colorClearWhite"/>
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/signUp"
@@ -114,7 +145,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/login_button"
             android:text="Sign Up"
-            android:textColor="#E57373" />
+            android:textColor="@color/colorPrimary" />
 
         <Button
             android:id="@+id/AHAA"

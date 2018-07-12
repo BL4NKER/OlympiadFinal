@@ -1,34 +1,25 @@
 package com.blanksoft.olympiadfinal1;
 
-import android.content.Context;
-import android.content.Intent;
+import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Base64;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.Volley;
+import com.blanksoft.olympiadfinal1.activity.LoginActivity;
+import com.blanksoft.olympiadfinal1.adapter.Adapter;
+import com.blanksoft.olympiadfinal1.model.Content;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,10 +71,13 @@ public class TimeLineFragment extends PostFragment {
         super.onDetach();
     } **/
 
+
     @Override
     public void content(){
-        final String URL =  "http://172.20.10.4:3000/content";
-
+        final String URL =  "http://218.155.147.128:3000/content";
+        mProgressDialog= new ProgressDialog(getActivity());
+        mProgressDialog.setMessage("잠시만 기다려 주세요.");
+        mProgressDialog.show();
         com.android.volley.toolbox.StringRequest request = new com.android.volley.toolbox.StringRequest(Request.Method.POST,
                 URL,
 
@@ -95,62 +89,75 @@ public class TimeLineFragment extends PostFragment {
                             Log.d("qweqwerqwt" ,response.toString());
 
                             JSONArray jsonarray = new JSONArray(response);
-                            for(int i =0; i<jsonarray.length(); i++){
+                            if(jsonarray.length() == 0){
+                                mProgressDialog.dismiss();
+                            }
+                            for(int i =0; i<jsonarray.length(); i++) {
+
 
                                 JSONObject jresponse = jsonarray.getJSONObject(i);
-                                byte[] bytePlainOrg = Base64.decode(jresponse.optString("image", "iVBORw0KGgoAAAANSUhEUgAAATkAAAE5CAYAAADr4VfxAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJ\n" +
-                                        "bWFnZVJlYWR5ccllPAAABqFJREFUeNrs3T1vW1UcwOHjJKgDoRjlA8QlLEiohImBAVtMWWgKO20n"), 0);
+                                Log.d("b", String.valueOf(jresponse.optBoolean("Bcomplete")));
 
-                                ByteArrayInputStream inStream = new ByteArrayInputStream(bytePlainOrg);
-                                Bitmap bm = BitmapFactory.decodeStream(inStream) ;
-
-                                //Log.d("ggw",jresponse.getString("content"));
-
-                                String Test = "[{\"TV\":\"3d tv\"},{\"computer\":\"Computer\notebook\",\"LG\":\"1\",\"count\":\"20\"}]";
+                                    byte[] bytePlainOrg = Base64.decode(jresponse.optString("image", "null"), 0);
+                                    ByteArrayInputStream inStream = new ByteArrayInputStream(bytePlainOrg);
+                                    Bitmap bm = BitmapFactory.decodeStream(inStream);
 
 
-                                //JOBJ = jresponse.optJSONObject("Ulike");
-                                Array = jresponse.optJSONArray("likeUsers");
-                                // String SETCHECK;
+                                    //Log.d("ggw",jresponse.getString("content"));
+
+
+
+
+                                    //JOBJ = jresponse.optJSONObject("Ulike");
+                                    Array = jresponse.optJSONArray("likeUsers");
+                                    // String SETCHECK;
 //                                JSONArray subArray = new JSONArray(JOBJ.get("userid").toString());
-                                SETLIKE = "1";
-                                if(Array.length() >0){
-                                    for(int j = 0; j < Array.length(); j++) {
+                                    SETLIKE = "1";
+                                    if (Array.length() > 0) {
+                                        for (int j = 0; j < Array.length(); j++) {
 //                                     String val = (String)Array.get(j);
-                                        SETLIKE = "1";
+                                            SETLIKE = "1";
 
-                                        if (Array.get(j).equals(LoginActivity.userId)) {
-                                            SETLIKE = "0";
-                                            Log.d("yeeag", "jj");
-                                            break;
+                                            if (Array.get(j).equals(LoginActivity.userId)) {
+                                                SETLIKE = "0";
+                                                Log.d("yeeag", "jj");
+                                                break;
+                                            }
+
                                         }
-
                                     }
+                                if(String.valueOf(jresponse.optBoolean("Bcomplete")).equals("true")){
+                                    SETSELEC = "1";
+
+
+                                }else {
+                                    SETSELEC = "0";
                                 }
 
-                                //Log.d("qwtqt", subArray.toString());
+                                    //Log.d("qwtqt", subArray.toString());
 
-                                Log.d("like",SETLIKE);
-                                Content content2 =new Content(jresponse.optString("content", "text on no value"), jresponse.optString("name", "text on no value"), jresponse.optString("date", "text on no value"), bm, jresponse.optString("like".toString()), jresponse.optString("contentid"), SETLIKE);
+                                    Log.d("like", SETLIKE);
+                                    Content content2 = new Content(jresponse.optString("content", "text on no value"), jresponse.optString("name", "text on no value"), jresponse.optString("date", "text on no value"), bm, jresponse.optString("like".toString()), jresponse.optString("contentid"), SETLIKE, SETSELEC);
+                                   // Content content = new Content(jresponse.getDouble("makerlat"), jresponse.getDouble("makerlong"));
+                                    //Collections.reverse(jsoncontent);
 
-                                //Collections.reverse(jsoncontent);
+                                    jsoncontent.add(content2);
 
-                                jsoncontent.add(content2);
+                                    Log.d("qwt", content2.toString());
 
-                                Log.d("qwt", content2.toString());
+
+                                LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+                                recyclerView.setLayoutManager(layoutManager);
+                                if (adapter == null) {
+                                    adapter = new Adapter(getContext(), jsoncontent);
+                                    recyclerView.setAdapter(adapter);
+
+                                }
+                                layoutManager.setReverseLayout(true);
+                                layoutManager.setStackFromEnd(true);
+                                mProgressDialog.dismiss();
 
                             }
-                            LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-                            recyclerView.setLayoutManager(layoutManager);
-                            if(adapter == null) {
-                                adapter = new Adapter(getContext(), jsoncontent);
-                                recyclerView.setAdapter(adapter);
-
-                            }
-                            layoutManager.setReverseLayout(true);
-                            layoutManager.setStackFromEnd(true);
-
-
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

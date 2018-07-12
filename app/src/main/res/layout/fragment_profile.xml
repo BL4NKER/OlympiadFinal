@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".BlankFragment">
 
     <LinearLayout
@@ -19,33 +20,38 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:background="@drawable/login_background"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/profileImage"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="45dp"
-                     />
+                    android:src="@drawable/ic_user" />
 
                 <TextView
+                    android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
-                    android:text="Wiliam Snoe"
+                    android:text="홍길동"
                     android:textColor="#fff"
                     android:textSize="21sp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="2dp"
                     android:text="example@example.com"
-                    android:textColor="#fff"
+                    android:textColor="@color/colorClearWhite"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -54,7 +60,74 @@
                 android:layout_width="300dp"
                 android:layout_height="70dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="220dp"></android.support.v7.widget.CardView>
+                android:layout_marginTop="220dp"
+                app:cardCornerRadius="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="1dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/rank"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="21sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorGray"
+                            android:text="Ranking" />
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="#40000000"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="1dp"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/score"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="21sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/colorGray"
+                            android:text="Quest" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
 
         </RelativeLayout>
 
@@ -93,7 +166,10 @@
                     android:paddingStart="20dp"
                     android:text="History"
                     android:textAllCaps="false"
-                    android:textSize="18sp" />
+                    android:textColor="@color/colorGray"
+                    android:textSize="18sp"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_history_clock_button"/>
 
                 <Button
                     android:id="@+id/btLikePost"
@@ -104,7 +180,10 @@
                     android:paddingStart="20dp"
                     android:text="Like Post"
                     android:textAllCaps="false"
-                    android:textSize="18sp" />
+                    android:textColor="@color/colorGray"
+                    android:textSize="18sp"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_heart"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -124,14 +203,18 @@
                     android:textSize="15sp" />
 
                 <Button
+                    android:id="@+id/changepw"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_marginTop="10dp"
                     android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_locked_padlock_and_a_wrench_tools"
                     android:gravity="center_vertical"
                     android:paddingStart="20dp"
                     android:text="Change Password"
                     android:textAllCaps="false"
+                    android:textColor="@color/colorGray"
                     android:textSize="18sp" />
 
                 <Button
@@ -142,8 +225,11 @@
                     android:gravity="center_vertical"
                     android:paddingStart="20dp"
                     android:text="Logout"
+                    android:textColor="@color/colorGray"
                     android:textAllCaps="false"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:drawablePadding="10dp"
+                    android:drawableStart="@drawable/ic_logout"/>
 
             </LinearLayout>
 

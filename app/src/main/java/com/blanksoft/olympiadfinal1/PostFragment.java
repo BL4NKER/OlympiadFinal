@@ -1,39 +1,26 @@
 package com.blanksoft.olympiadfinal1;
 
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
-import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.RetryPolicy;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.Volley;
+import com.blanksoft.olympiadfinal1.model.Content;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class PostFragment extends Fragment {
 
@@ -48,9 +35,12 @@ public class PostFragment extends Fragment {
     JSONArray Array;
     JSONObject mArray;
     char[] uid;
+    ProgressDialog mProgressDialog;
+
 
     JSONObject JOBJ;
     String SETLIKE="1";
+    String SETSELEC = "0";
 
     LinearLayoutManager layoutManager;
 
@@ -84,8 +74,10 @@ public class PostFragment extends Fragment {
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+
                 jsoncontent.clear();
                 content();
+                if(adapter!=null)
                 adapter.notifyDataSetChanged();
 
                 mSwipeRefreshLayout.setRefreshing(false);

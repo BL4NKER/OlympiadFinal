@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PostWriteActivity">
+    tools:context=".activity.PostWriteActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,11 +24,17 @@
         <EditText
             android:id="@+id/etContent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="300dp"
             android:background="@null"
+            android:gravity="top"
             android:hint="설명을 입력하세요..."
             android:padding="10dp"
             android:textSize="24dp" />
+
+        <ImageView
+            android:id="@+id/iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -78,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:background="@null"
+                    android:onClick="onClickCamera"
                     app:srcCompat="@drawable/ic_baseline_camera_alt_24px" />
 
                 <ImageButton
@@ -86,6 +93,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="5dp"
                     android:background="@null"
+                    android:onClick="onClickSelectImage"
                     app:srcCompat="@drawable/ic_baseline_collections_24px" />
 
             </LinearLayout>
